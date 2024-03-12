@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    container_name: arena-open-beach-app
+    user: node
+    ports:
+      - 3333:3333
+    volumes:
+      - .:/home/node/app
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: areana-open-beach-pg
+    image: postgres:16.2
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=area-open-beach-pg
+      - PGDATA=/data/postgres
+    volumes:
+      - ./data/postgres:/data/postgres
+
+  cache:
+    container_name: areana-open-bech-cache
+    image: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - ./data/redis:/data

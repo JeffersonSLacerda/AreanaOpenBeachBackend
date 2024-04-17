@@ -1,8 +1,16 @@
 {
-  "extends": "@rocketseat/eslint-config/node",
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "@rocketseat/eslint-config/node",
+    "plugin:prettier/recommended",
+    "prettier",
+    "eslint:recommended"
+  ],
   "rules": {
     "no-useless-constructor": "off",
-    "no-unused-vars": "off",
-    "prettier/prettier": "off",
-  }
+    "no-new": "off"
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ]
 }

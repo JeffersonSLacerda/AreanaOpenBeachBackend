@@ -1,4 +1,5 @@
-import { AuthModuleModule } from './auth/authmodule.module'
+import { AuthenticateController } from './controllers/authenticate.controller';
+import { AuthModule } from './auth/auth.module'
 import { CreateAccountController } from './controllers/create-account.controller'
 import { Module } from '@nestjs/common'
 import { PrismaService } from './prisma/prisma.service'
@@ -7,13 +8,14 @@ import { envSchema } from './env'
 
 @Module({
   imports: [
-    AuthModuleModule,
+    AuthModule,
     ConfigModule.forRoot({
       validate: (env) => envSchema.parse(env),
       isGlobal: true,
     }),
   ],
-  controllers: [CreateAccountController],
+  controllers: [
+    AuthenticateController, CreateAccountController],
   providers: [PrismaService],
 })
 export class AppModule { }

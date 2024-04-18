@@ -1,3 +1,4 @@
+import { CreateAthleteController } from './controllers/create-athlete.controller';
 import { AuthenticateController } from './controllers/authenticate.controller';
 import { AuthModule } from './auth/auth.module'
 import { CreateAccountController } from './controllers/create-account.controller'
@@ -15,7 +16,9 @@ import { envSchema } from './env'
     }),
   ],
   controllers: [
-    AuthenticateController, CreateAccountController],
+    CreateAthleteController,
+    AuthenticateController,
+    CreateAccountController],
   providers: [PrismaService],
 })
 export class AppModule { }

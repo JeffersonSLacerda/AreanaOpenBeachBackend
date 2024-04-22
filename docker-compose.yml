@@ -9,6 +9,8 @@ services:
       - 3333:3333
     volumes:
       - .:/home/node/app
+      - /home/node/app/node_modules
+      - areanaopenbeach-bashhistory:/commandhistory
     depends_on:
       - postgres
 
@@ -23,7 +25,7 @@ services:
       - POSTGRES_DB=area-open-beach-pg
       - PGDATA=/data/postgres
     volumes:
-      - ./data/postgres:/data/postgres
+      - ./data/postgres:/var/lib/postgresql/data
 
   cache:
     container_name: areana-open-bech-cache
@@ -32,3 +34,6 @@ services:
       - 6379:6379
     volumes:
       - ./data/redis:/data
+
+volumes:
+  areanaopenbeach-bashhistory:

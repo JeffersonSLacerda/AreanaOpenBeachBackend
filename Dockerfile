@@ -1,12 +1,13 @@
 FROM mcr.microsoft.com/vscode/devcontainers/typescript-node
 
+#All initial commands could be added here
 RUN apt update && apt install -y openssl procps
 
 # Used to persist bash history as per https://code.visualstudio.com/remote/advancedcontainers/persist-bash-history
 RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
-  && mkdir /commandhistory \
-  && touch /commandhistory/.bash_history \
-  && chown -R root /commandhistory \
+  && mkdir ~/commandhistory \
+  && touch ~/commandhistory/.bash_history \
+  && chown -R root ~/commandhistory \
   && echo "$SNIPPET" >> "/home/node/.bashrc"
 
 # install jless (because its not available at https://containers.dev/features at time of writing)
@@ -26,4 +27,5 @@ WORKDIR /home/node/app
 
 #COPY package.json package-lock.json /home/node/app/
 
-CMD [ "tail", "-f", "/dev/null" ]
+#CMD [ "tail", "-f", "/dev/null" ]
+CMD [ "/home/node/app/.docker/scripts/start-dev.sh" ]

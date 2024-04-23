@@ -3,6 +3,9 @@ import { defineConfig } from 'vitest/config';
 import tsConfiPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
+  define: {
+    'VITE_CJS_IGNORE_WARNING': true,
+  },
   test: {
     globals: true,
     root: './',

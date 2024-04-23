@@ -61,3 +61,6 @@ data
 *.txt
 
 .docker/*
+
+areanaopenbeach-zshhistory
+areanaopenbeach-zshhistory/*

@@ -22,12 +22,23 @@ Content-Type: application/json
 }
 
 ###
-# @name create-athlete
-POST {{base_url}}/athletes
+# @name create-arena
+POST {{base_url}}/arenas
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 {
-  "email": "jeff@test.com",
-  "password": "123456"
+  "name": "Arena01",
+  "modality": "BEACHTENNIS",
+  "isAvailable": true,
+  "capacity": 40,
+  "state": "AVAILABLE"
 }
+
+###
+# @name fetch-arenas
+GET {{base_url}}/arenas
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{}

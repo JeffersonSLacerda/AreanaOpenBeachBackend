@@ -1,4 +1,4 @@
-import { CreateAthleteController } from './controllers/create-athlete.controller';
+import { FetchArenasController } from './controllers/fetch-arenas.controller';
 import { AuthenticateController } from './controllers/authenticate.controller';
 import { AuthModule } from './auth/auth.module'
 import { CreateAccountController } from './controllers/create-account.controller'
@@ -6,6 +6,7 @@ import { Module } from '@nestjs/common'
 import { PrismaService } from './prisma/prisma.service'
 import { ConfigModule } from '@nestjs/config'
 import { envSchema } from './env'
+import { CreateArenaController } from './controllers/create-arena.controller';
 
 @Module({
   imports: [
@@ -16,9 +17,11 @@ import { envSchema } from './env'
     }),
   ],
   controllers: [
-    CreateAthleteController,
+    FetchArenasController,
     AuthenticateController,
-    CreateAccountController],
+    CreateAccountController,
+    CreateArenaController,
+  ],
   providers: [PrismaService],
 })
 export class AppModule { }

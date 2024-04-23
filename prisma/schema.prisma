@@ -25,3 +25,31 @@ model Athlete {
 
   @@map("athlete")
 }
+
+enum Modalities {
+  BEACHTENNIS
+  BEACHVOLLEYBALL
+  FOOTVOLEY
+  NONE
+}
+
+enum State {
+  AVAILABLE
+  RESERVED
+  DAYUSE
+  MAINTENANCE
+}
+
+model Arena {
+  id          String     @id @default(uuid())
+  name        String
+  modalities  Modalities @default(NONE)
+  isAvailable Boolean    @default(true) @map("is_available")
+  capacity    Int?
+  state       State      @default(AVAILABLE)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  @@map("arena")
+}

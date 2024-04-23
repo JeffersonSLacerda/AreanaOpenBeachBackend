@@ -1,4 +1,5 @@
 import { CreateAthleteDTO } from '@/DTOs/create-athlete.dto'
+import { CreateSessionDTO } from '@/DTOs/create-session.dto'
 import { AppModule } from '@/app.module'
 import { INestApplication } from '@nestjs/common'
 import { Test } from '@nestjs/testing'
@@ -17,7 +18,7 @@ let prisma: PrismaClient
 let urlConnection: string
 let client: Client
 
-describe('Create Athlete (E2E)', () => {
+describe('Authenticate (E2E)', () => {
   beforeAll(async () => {
     container = await new PostgreSqlContainer().start()
 
@@ -74,17 +75,28 @@ describe('Create Athlete (E2E)', () => {
     await container.stop()
   })
 
-  test('[POST] /accounts', async () => {
+  test('[POST] /sessions', async () => {
     const atheleteData: CreateAthleteDTO = {
       name: 'Jonh Doe',
       email: 'jonh.doe@test.com',
       password: '123456',
     }
 
-    const response = await request(app.getHttpServer())
+    const userResponse = await request(app.getHttpServer())
       .post('/accounts')
       .send(atheleteData)
 
-    expect(response.statusCode).toEqual(201)
+    expect(userResponse.statusCode).toEqual(201)
+
+    const loginData: CreateSessionDTO = {
+      email: userResponse.body.email,
+      password: '123456',
+    }
+
+    const authenticateReponse = await request(app.getHttpServer())
+      .post('/sessions')
+      .send(loginData)
+
+    expect(authenticateReponse.statusCode).toEqual(201)
   })
 })

@@ -6,24 +6,24 @@ import { Env } from 'src/env'
 import { JwtStrategy } from './jwt.strategy'
 
 @Module({
-    imports: [
-        PassportModule,
-        JwtModule.registerAsync({
-            inject: [ConfigService],
-            global: true,
-            useFactory(config: ConfigService<Env, true>) {
-                const privateKey = config.get('JWT_PRIVATE_KEY')
-                const publicKey = config.get('JWT_PUBLIC_KEY')
+  imports: [
+    PassportModule,
+    JwtModule.registerAsync({
+      inject: [ConfigService],
+      global: true,
+      useFactory(config: ConfigService<Env, true>) {
+        const privateKey = config.get('JWT_PRIVATE_KEY')
+        const publicKey = config.get('JWT_PUBLIC_KEY')
 
-                return {
-                    signOptions: { algorithm: 'RS256' },
-                    privateKey: Buffer.from(privateKey, 'base64'),
-                    publicKey: Buffer.from(publicKey, 'base64'),
-                }
-            },
-        }),
-    ],
-    controllers: [],
-    providers: [JwtStrategy],
+        return {
+          signOptions: { algorithm: 'RS256' },
+          privateKey: Buffer.from(privateKey, 'base64'),
+          publicKey: Buffer.from(publicKey, 'base64'),
+        }
+      },
+    }),
+  ],
+  controllers: [],
+  providers: [JwtStrategy],
 })
-export class AuthModule { }
+export class AuthModule {}

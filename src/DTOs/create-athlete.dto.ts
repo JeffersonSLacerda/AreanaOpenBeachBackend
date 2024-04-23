@@ -1,5 +1,5 @@
 export class CreateAthleteDTO {
-  name!: string;
-  email!: string;
-  password!: string;
+  name!: string
+  email!: string
+  password!: string
 }

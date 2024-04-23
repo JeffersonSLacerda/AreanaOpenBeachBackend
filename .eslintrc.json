@@ -1,14 +1,21 @@
 {
+  "root": true,
+  "env": {
+    "es2022": true,
+    "vitest-globals/env":true
+  },
   "parser": "@typescript-eslint/parser",
   "extends": [
     "@rocketseat/eslint-config/node",
     "plugin:prettier/recommended",
     "prettier",
-    "eslint:recommended"
+    "eslint:recommended",
+    "plugin:vitest-globals/recommended"
   ],
   "rules": {
     "no-useless-constructor": "off",
-    "no-new": "off"
+    "no-new": "off",
+    "no-unused-vars": "off"
   },
   "plugins": [
     "@typescript-eslint"

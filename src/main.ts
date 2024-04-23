@@ -9,7 +9,9 @@ async function bootstrap() {
 
   const configDocumentation = new DocumentBuilder()
     .setTitle('Arena Open Beach Documentation')
-    .setDescription('This is a documentation to backend services from Arena Open Beach App')
+    .setDescription(
+      'This is a documentation to backend services from Arena Open Beach App',
+    )
     .setVersion('1.0')
     .addTag('athlete')
     .build()

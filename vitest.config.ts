@@ -1,10 +1,10 @@
-import swc from 'unplugin-swc';
-import { defineConfig } from 'vitest/config';
-import tsConfiPaths from 'vite-tsconfig-paths';
+import swc from 'unplugin-swc'
+import { defineConfig } from 'vitest/config'
+import tsConfiPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
   define: {
-    'VITE_CJS_IGNORE_WARNING': true,
+    VITE_CJS_IGNORE_WARNING: true,
   },
   test: {
     globals: true,
@@ -16,7 +16,7 @@ export default defineConfig({
       '**/.{idea,git,cache,output,temp}/**',
       './src/config/**',
       '**/data/**',
-    ]
+    ],
   },
   plugins: [
     tsConfiPaths(),
@@ -26,5 +26,4 @@ export default defineConfig({
       module: { type: 'es6' },
     }),
   ],
-
-});
+})

@@ -16,7 +16,7 @@
     "strict": true,
     "strictNullChecks": true,
     "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
+    "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@/*": [
@@ -25,6 +25,7 @@
     },
     "types": [
       "vitest/globals"
-    ]
+    ],
+    "esModuleInterop": true,
   }
 }

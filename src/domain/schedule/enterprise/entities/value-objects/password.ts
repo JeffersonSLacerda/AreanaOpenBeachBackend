@@ -5,7 +5,7 @@ import {
   genSaltSync,
   hash,
   hashSync,
-} from 'bcryptjs'
+} from 'bcrypt'
 
 export class PasswordHelper {
   private static saltRounds = 8

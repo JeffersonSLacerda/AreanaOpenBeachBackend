@@ -1,5 +1,5 @@
 import { Either, right } from '@/core/either'
-import { NotificationRepository } from '../repositories/notification-repository'
+import { NotificationsRepository } from '../repositories/notifications-repository'
 import { Notification } from '../../enterprise/entities/notifications'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 
@@ -18,7 +18,7 @@ export type SendNotificationUseCaseResponse = Either<
 
 export class SendNotificationUseCase {
   constructor(
-    private readonly notificationRepository: NotificationRepository,
+    private readonly notificationRepository: NotificationsRepository,
   ) {}
 
   async execute({

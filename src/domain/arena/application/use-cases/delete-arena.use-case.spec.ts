@@ -11,7 +11,7 @@ describe('Delete Arena', () => {
   })
 
   afterEach(() => {
-    arenasRepository.clear()
+    arenasRepository.clean()
   })
   it('should be able to delete a arena', async () => {
     const arena = makeArena({

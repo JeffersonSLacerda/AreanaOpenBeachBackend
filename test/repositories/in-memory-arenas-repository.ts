@@ -8,7 +8,7 @@ export class InMemoryArenasRepository implements ArenasRepository {
     return this.items.find((arena) => arena.id.toString() === arenaId) || null
   }
 
-  async fetchArenas(): Promise<Arena[]> {
+  async fetchAll(): Promise<Arena[]> {
     return this.items
   }
 
@@ -32,7 +32,7 @@ export class InMemoryArenasRepository implements ArenasRepository {
     this.items.splice(arenaIndex, 1)
   }
 
-  public clear() {
+  public clean() {
     this.items.splice(0, this.items.length)
   }
 }

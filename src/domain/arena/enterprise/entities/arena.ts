@@ -1,9 +1,10 @@
-import { AggregateRoot } from '@/core/entities/aggregate-root'
-import { Modalities } from './enums/modalities'
-import { State } from './enums/state'
+import { Entity } from '@/core/entities/entity'
 import { Optional } from '@/core/types/optional'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { State } from './enums/state'
+import { Modalities } from './enums/modalities'
 
+export interface ArenaProps {
 export interface ArenaProps {
   name: string
   modality: Modalities
@@ -14,7 +15,7 @@ export interface ArenaProps {
   updatedAt?: Date
 }
 
-export class Arena extends AggregateRoot<ArenaProps> {
+export class Arena extends Entity<ArenaProps> {
   static create(props: Optional<ArenaProps, 'createdAt'>, id?: UniqueEntityID) {
     const arena = new Arena(
       {
@@ -24,6 +25,7 @@ export class Arena extends AggregateRoot<ArenaProps> {
       id,
     )
 
+    return arena
     return arena
   }
 

@@ -24,6 +24,8 @@ export class ShowArenaUseCase {
 
     if (!arena) return left(new ResourceNotFoundError())
 
-    return right({ arena })
+    return right({
+      arena,
+    })
   }
 }

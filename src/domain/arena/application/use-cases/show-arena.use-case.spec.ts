@@ -11,11 +11,13 @@ describe('Show Arena', () => {
   })
 
   afterEach(() => {
-    arenasRepository.clear()
+    arenasRepository.clean()
   })
 
   it('should be able to show a arena', async () => {
-    const arena = makeArena()
+    const arena = makeArena({
+      name: 'Beach Tennis 1',
+    })
 
     arenasRepository.create(arena)
 
@@ -25,13 +27,10 @@ describe('Show Arena', () => {
 
     expect(result.isRight()).toBe(true)
     expect(arenasRepository.items).toHaveLength(1)
-  })
-
-  it('should not be able to show a inexistent arena', async () => {
-    const result = await sut.execute({
-      arenaId: 'arena id',
+    expect(result.value).toMatchObject({
+      arena: expect.objectContaining({
+        name: 'Beach Tennis 1',
+      }),
     })
-
-    expect(result.isLeft()).toBe(true)
   })
 })

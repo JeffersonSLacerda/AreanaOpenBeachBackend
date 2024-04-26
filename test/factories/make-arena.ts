@@ -2,9 +2,11 @@ import { faker } from '@faker-js/faker'
 
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { Arena, ArenaProps } from '@/domain/arena/enterprise/entities/arena'
-import { State } from '@/domain/arena/enterprise/entities/enums/state'
 import { Modalities } from '@/domain/arena/enterprise/entities/enums/modalities'
+import { State } from '@/domain/arena/enterprise/entities/enums/state'
 
+export function makeArena(
+  override: Partial<ArenaProps> = {},
 export function makeArena(
   override: Partial<ArenaProps> = {},
   id?: UniqueEntityID,
@@ -13,6 +15,7 @@ export function makeArena(
   const randomModality =
     modalitiesArray[Math.floor(Math.random() * modalitiesArray.length)]
 
+  const arena = Arena.create(
   const arena = Arena.create(
     {
       name: faker.person.fullName(),
@@ -24,5 +27,6 @@ export function makeArena(
     id,
   )
 
+  return arena
   return arena
 }

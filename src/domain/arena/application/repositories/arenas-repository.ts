@@ -1,10 +1,10 @@
 import { Arena } from '../../enterprise/entities/arena'
 
 export interface ArenasRepository {
-  getById(id: string): Promise<Arena | null>
-  fetchArenas(): Promise<Arena[]>
+  getById(courtId: string): Promise<Arena | null>
+  fetchAll(): Promise<Arena[]>
   fetchAllAvailable(): Promise<Arena[]>
-  create(arena: Arena): Promise<void>
-  save(arena: Arena): Promise<void>
-  delete(arena: Arena): Promise<void>
+  create(court: Arena): Promise<void>
+  save(court: Arena): Promise<void>
+  delete(court: Arena): Promise<void>
 }

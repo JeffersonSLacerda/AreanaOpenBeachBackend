@@ -15,6 +15,6 @@ export abstract class AggregateRoot<Props> extends Entity<Props> {
   }
 
   public clearEvents() {
-    this._domainEvents = []
+    this._domainEvents.splice(0, this._domainEvents.length)
   }
 }

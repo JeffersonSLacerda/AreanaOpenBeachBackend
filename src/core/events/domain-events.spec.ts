@@ -1,16 +1,16 @@
-import { DomainEvent } from '../events/domain-event'
-import { UniqueEntityID } from '../entities/unique-entity-id'
 import { AggregateRoot } from '../entities/aggregate-root'
-import { DomainEvents } from '@/core/events/domain-events'
-import { vi } from 'vitest'
+import { UniqueEntityID } from '../entities/unique-entity-id'
+import { DomainEvent } from './domain-event'
+import { DomainEvents } from './domain-events'
 
 class CustomAggregateCreated implements DomainEvent {
   public ocurredAt: Date
-  private aggregate: CustomAggregate // eslint-disable-line
+  // eslint-disable-next-line no-use-before-define
+  private aggregate: CustomAggregate
 
   constructor(aggregate: CustomAggregate) {
-    this.aggregate = aggregate
     this.ocurredAt = new Date()
+    this.aggregate = aggregate
   }
 
   public getAggregateId(): UniqueEntityID {
@@ -28,25 +28,25 @@ class CustomAggregate extends AggregateRoot<null> {
   }
 }
 
-describe('domain events', () => {
-  it('should be able to dispatch and listen to events', async () => {
+describe('Domain Events', () => {
+  it('should be able to dispatch and listen events', () => {
     const callbackSpy = vi.fn()
 
-    // Subscriber cadastrado (ouvindo o evento de "resposta criada")
+    // Subiscriber cadastrado (ouvindo o evento de resposta criação do aggregate)
     DomainEvents.register(callbackSpy, CustomAggregateCreated.name)
 
-    // Estou criando uma resposta porém SEM salvar no banco
+    // Criando uma instância porém sem salvar no banco
     const aggregate = CustomAggregate.create()
 
-    // Estou assegurando que o evento foi criado porém NÃO foi disparado
+    // Asseguro que o evento foi criado porém não foi disparado
     expect(aggregate.domainEvents).toHaveLength(1)
 
-    // Estou salvando a resposta no banco de dados e assim disparando o evento
+    // Salvando a entidade no banco e assim disparando o evento
+    // Está chamada acontece dentro do repository
     DomainEvents.dispatchEventsForAggregate(aggregate.id)
 
-    // O subscriber ouve o evento e faz o que precisa ser feito com o dado
+    // O subscriber ouve o evento e faz o que precisa ser feito
     expect(callbackSpy).toHaveBeenCalled()
-
     expect(aggregate.domainEvents).toHaveLength(0)
   })
 })

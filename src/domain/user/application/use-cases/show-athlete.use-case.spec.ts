@@ -1,35 +1,34 @@
-import { InMemoryAthletesRepository } from 'test/repositories/in-memory-athletes-repository'
-import { makeAthlete } from 'test/factories/make-athlete'
-import { ShowProfileUseCase } from './show-profile-use-case'
-import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { InMemoryUsersRepository } from 'test/repositories/in-memory-users-repository'
+import { ShowProfileUseCase } from './show-profile.use-case'
+import { makeUser } from 'test/factories/make-user'
 import { ResourceNotFoundError } from '@/core/errors/types/resource-not-found-error'
 
-let athletesRepository: InMemoryAthletesRepository
+let usersRepository: InMemoryUsersRepository
 let sut: ShowProfileUseCase
 describe('Show Profile', () => {
   beforeEach(() => {
-    athletesRepository = new InMemoryAthletesRepository()
-    sut = new ShowProfileUseCase(athletesRepository)
+    usersRepository = new InMemoryUsersRepository()
+    sut = new ShowProfileUseCase(usersRepository)
   })
 
   afterEach(() => {
-    athletesRepository.clean()
+    usersRepository.clear()
   })
   it('should be able to show the athlete profile', async () => {
-    const athlete = makeAthlete({
+    const user = makeUser({
       name: 'John Doe',
       email: 'JohnDoe@example.com',
     })
 
-    athletesRepository.create(athlete)
+    usersRepository.create(user)
 
     const result = await sut.execute({
-      athleteId: athlete.id.toString(),
+      userId: user.id.toString(),
     })
 
     expect(result.isRight()).toBe(true)
     expect(result.value).toMatchObject({
-      athlete: expect.objectContaining({
+      user: expect.objectContaining({
         name: 'John Doe',
         email: 'JohnDoe@example.com',
       }),
@@ -38,7 +37,7 @@ describe('Show Profile', () => {
 
   it('should not be able to get a inexistent athlete profile', async () => {
     const result = await sut.execute({
-      athleteId: new UniqueEntityID().toString(),
+      userId: '2',
     })
 
     expect(result.isLeft()).toBe(true)

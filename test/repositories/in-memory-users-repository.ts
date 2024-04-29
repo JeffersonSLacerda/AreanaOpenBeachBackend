@@ -1,4 +1,5 @@
 import { UsersRepository } from '@/domain/user/application/repositories/users-repository'
+import { Role } from '@/domain/user/enterprise/entities/enums/role'
 import { User } from '@/domain/user/enterprise/entities/user'
 
 export class InMemoryUsersRepository implements UsersRepository {
@@ -10,6 +11,10 @@ export class InMemoryUsersRepository implements UsersRepository {
 
   async findByEmail(email: string): Promise<User | null> {
     return this.items.find((item) => item.email === email) || null
+  }
+
+  async listAthletes(): Promise<User[]> {
+    return this.items.filter((item) => item.role === Role.ATHLETE)
   }
 
   async create(user: User): Promise<void> {

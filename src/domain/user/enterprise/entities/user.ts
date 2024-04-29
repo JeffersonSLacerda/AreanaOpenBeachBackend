@@ -8,7 +8,7 @@ export interface UserProps {
   name: string
   email: string
   password: string
-  phone?: string
+  phone: string
   role: Role
 
   createdAt: Date
@@ -61,8 +61,8 @@ export class User extends AggregateRoot<UserProps> {
     this.touch()
   }
 
-  get phone(): string | null {
-    return this.props.phone || null
+  get phone(): string {
+    return this.props.phone
   }
 
   set phone(phone: string) {

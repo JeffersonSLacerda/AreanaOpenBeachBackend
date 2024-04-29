@@ -1,17 +1,17 @@
-import { InMemoryAthletesRepository } from 'test/repositories/in-memory-athletes-repository'
-import { RegisterAthleteUseCase } from './register-athlete-use-case'
-import { makeAthlete } from 'test/factories/make-athlete'
+import { makeUser } from 'test/factories/make-user'
+import { RegisterAthleteUseCase } from './register-athlete.use-case'
+import { InMemoryUsersRepository } from 'test/repositories/in-memory-users-repository'
 
-let athletesRepository: InMemoryAthletesRepository
+let usersRepository: InMemoryUsersRepository
 let sut: RegisterAthleteUseCase
 describe('Create Athlete', () => {
   beforeEach(() => {
-    athletesRepository = new InMemoryAthletesRepository()
-    sut = new RegisterAthleteUseCase(athletesRepository)
+    usersRepository = new InMemoryUsersRepository()
+    sut = new RegisterAthleteUseCase(usersRepository)
   })
 
   afterEach(() => {
-    athletesRepository.clean()
+    usersRepository.clear()
   })
   it('should be able to register a new Athlete', async () => {
     const result = await sut.execute({
@@ -32,9 +32,9 @@ describe('Create Athlete', () => {
   })
 
   it('should not be able register tow athletes with the same email', async () => {
-    const athlete = makeAthlete({ email: 'email@test.com' })
+    const athlete = makeUser({ email: 'email@test.com' })
 
-    athletesRepository.create(athlete)
+    usersRepository.create(athlete)
 
     const result = await sut.execute({
       name: 'John Doe',

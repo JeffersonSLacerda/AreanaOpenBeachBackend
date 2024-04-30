@@ -6,7 +6,7 @@ import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 
 export interface ArenaProps {
   name: string
-  modalities: Modalities
+  modality: Modalities
   isAvailable: boolean
   capacity?: number
   state: State
@@ -37,12 +37,12 @@ export class Arena extends AggregateRoot<ArenaProps> {
     this.touch()
   }
 
-  get modalities(): Modalities {
-    return this.props.modalities
+  get modality(): Modalities {
+    return this.props.modality
   }
 
-  set modalities(modalities: Modalities) {
-    this.props.modalities = modalities
+  set modality(modality: Modalities) {
+    this.props.modality = modality
     this.touch()
   }
 

@@ -17,7 +17,7 @@ export function makeArena(
     {
       name: faker.person.fullName(),
       isAvailable: true,
-      modalities: randomModality as Modalities,
+      modality: randomModality as Modalities,
       state: State.AVAILABLE,
       ...override,
     },

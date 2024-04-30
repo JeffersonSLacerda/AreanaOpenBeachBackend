@@ -8,7 +8,6 @@ interface CreateArenaUseCaseRequest {
   name: string
   modality: Modalities
   isAvailable: boolean
-  capacity?: number
   state: State
 }
 
@@ -22,14 +21,12 @@ export class CreateArenaUseCase {
     modality,
     isAvailable,
     state,
-    capacity,
   }: CreateArenaUseCaseRequest): Promise<CreateArenaUseCaseResponse> {
     const arena = Arena.create({
       name,
       modality,
       isAvailable,
       state,
-      capacity,
     })
 
     await this.arenasRepoistory.create(arena)

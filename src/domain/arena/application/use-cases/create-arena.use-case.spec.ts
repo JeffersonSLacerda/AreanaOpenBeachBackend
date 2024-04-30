@@ -1,4 +1,4 @@
-import { InMemoryArenasRepository } from 'test/repositories/in-memory-courts-repository'
+import { InMemoryArenasRepository } from 'test/repositories/in-memory-arenas-repository'
 import { CreateArenaUseCase } from './create-arena.use-case'
 import { Modalities } from '../../enterprise/entities/enums/modalities'
 import { State } from '../../enterprise/entities/enums/state'

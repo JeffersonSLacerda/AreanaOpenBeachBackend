@@ -1,4 +1,4 @@
-import { InMemoryArenasRepository } from 'test/repositories/in-memory-courts-repository'
+import { InMemoryArenasRepository } from 'test/repositories/in-memory-arenas-repository'
 import { DeleteArenaUseCase } from './delete-arena.use-case'
 import { makeArena } from 'test/factories/make-arena'
 

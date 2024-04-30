@@ -2,7 +2,7 @@ import { AggregateRoot } from '@/core/entities/aggregate-root'
 import { Role } from './enums/role'
 import { Optional } from '@/core/types/optional'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
-import { PasswordHelper } from '@/domain/schedule/enterprise/entities/value-objects/password'
+import { PasswordHelper } from '@/domain/user/enterprise/entities/value-objects/password'
 
 export interface UserProps {
   name: string

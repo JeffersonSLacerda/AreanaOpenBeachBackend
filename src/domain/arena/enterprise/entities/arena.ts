@@ -8,7 +8,6 @@ export interface ArenaProps {
   name: string
   modality: Modalities
   isAvailable: boolean
-  capacity?: number
   state: State
 
   createdAt: Date
@@ -52,15 +51,6 @@ export class Arena extends AggregateRoot<ArenaProps> {
 
   set isAvailable(isAvailable: boolean) {
     this.props.isAvailable = isAvailable
-    this.touch()
-  }
-
-  get capacity(): number | null {
-    return this.props.capacity || null
-  }
-
-  set capacity(capacity: number) {
-    this.props.capacity = capacity
     this.touch()
   }
 

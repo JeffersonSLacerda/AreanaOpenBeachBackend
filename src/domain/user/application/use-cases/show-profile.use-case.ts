@@ -20,7 +20,7 @@ export class ShowProfileUseCase {
   async execute({
     userId,
   }: ShowProfileUseCaseRequest): Promise<ShowProfileUseCaseResponse> {
-    const user = await this.usersRepository.findById(userId)
+    const user = await this.usersRepository.getById(userId)
 
     if (!user) return left(new ResourceNotFoundError())
 

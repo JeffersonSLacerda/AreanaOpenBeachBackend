@@ -21,8 +21,8 @@ export class DeleteAthleteUseCase {
     editorId,
     athleteEmail,
   }: DeleteAthleteUseCaseRequest): Promise<DeleteAthleteUseCaseResponse> {
-    const athlete = await this.usersRepository.findByEmail(athleteEmail)
-    const editor = await this.usersRepository.findById(editorId)
+    const athlete = await this.usersRepository.getByEmail(athleteEmail)
+    const editor = await this.usersRepository.getById(editorId)
 
     if (!athlete || !editor) return left(new ResourceNotFoundError())
 

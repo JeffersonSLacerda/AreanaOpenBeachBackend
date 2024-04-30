@@ -28,8 +28,8 @@ export class EditAthleteProfileUseCase {
     email,
     phone,
   }: EditAthleteProfileUseCaseRequest): Promise<EditAthleteProfileUseCaseResponse> {
-    const athlete = await this.usersRepository.findById(athleteId)
-    const editor = await this.usersRepository.findById(editorId)
+    const athlete = await this.usersRepository.getById(athleteId)
+    const editor = await this.usersRepository.getById(editorId)
 
     if (!athlete || !editor) return left(new ResourceNotFoundError())
 

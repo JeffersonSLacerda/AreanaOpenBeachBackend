@@ -25,7 +25,7 @@ export class RegisterAthleteUseCase {
     password,
     phone,
   }: RegisterAtheleteUseCaseRequest): Promise<RegisterAthleteUseCaseResponse> {
-    const emailAlreadyExists = await this.usersRepoistory.findByEmail(email)
+    const emailAlreadyExists = await this.usersRepoistory.getByEmail(email)
 
     if (emailAlreadyExists) return left(new EmailAlreadyExistsError())
 

@@ -21,8 +21,8 @@ export class PromoveUserToAdminUseCase {
     userId,
     editorId,
   }: PromoveUserToAdminUseCaseRequest): Promise<PromoveUserToAdminUseCaseResponse> {
-    const userToPromove = await this.usersRepository.findById(userId)
-    const editor = await this.usersRepository.findById(editorId)
+    const userToPromove = await this.usersRepository.getById(userId)
+    const editor = await this.usersRepository.getById(editorId)
 
     if (!userToPromove || !editor) return left(new ResourceNotFoundError())
 

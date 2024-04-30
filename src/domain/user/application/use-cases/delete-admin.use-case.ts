@@ -21,8 +21,8 @@ export class DeleteAdminUseCase {
     editorId,
     adminId,
   }: DeleteAdminUseCaseRequest): Promise<DeleteAdminUseCaseResponse> {
-    const adminToDelete = await this.usersRepository.findById(adminId)
-    const editor = await this.usersRepository.findById(editorId)
+    const adminToDelete = await this.usersRepository.getById(adminId)
+    const editor = await this.usersRepository.getById(editorId)
     const adminsOnSystem = await this.usersRepository.countAdminsUsers()
 
     if (!adminToDelete || !editor) return left(new ResourceNotFoundError())

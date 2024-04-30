@@ -8,7 +8,7 @@ export class ListAthletesUseCase {
   constructor(private readonly usersRepository: UsersRepository) {}
 
   async execute(): Promise<ListAthletesUseCaseResponse> {
-    const athletes = await this.usersRepository.listAthletes()
+    const athletes = await this.usersRepository.fetchAthletes()
 
     return right({
       athletes,

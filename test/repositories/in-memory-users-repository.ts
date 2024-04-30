@@ -17,6 +17,12 @@ export class InMemoryUsersRepository implements UsersRepository {
     return this.items.filter((item) => item.role === Role.ATHLETE)
   }
 
+  async countAdminsUsers(): Promise<number> {
+    const admins = this.items.filter((item) => item.role === Role.ADMIN)
+
+    return admins.length
+  }
+
   async create(user: User): Promise<void> {
     this.items.push(user)
   }

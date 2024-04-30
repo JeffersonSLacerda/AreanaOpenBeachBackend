@@ -4,7 +4,7 @@ import { State } from './enums/state'
 import { Optional } from '@/core/types/optional'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 
-interface ArenaProps {
+export interface ArenaProps {
   name: string
   modalities: Modalities
   isAvailable: boolean

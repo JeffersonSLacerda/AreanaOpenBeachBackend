@@ -1,38 +1,38 @@
-import { CourtsRepository } from '@/domain/schedule/application/repositories/courts-repository'
-import { Court } from '@/domain/schedule/enterprise/entities/court'
+import { ArenasRepository } from '@/domain/arena/application/repositories/arenas-repository'
+import { Arena } from '@/domain/arena/enterprise/entities/arena'
 
-export class InMemoryCourtsRepository implements CourtsRepository {
-  public items: Court[] = []
+export class InMemoryArenasRepository implements ArenasRepository {
+  public items: Arena[] = []
 
-  async getById(courtId: string): Promise<Court | null> {
-    return this.items.find((court) => court.id.toString() === courtId) || null
+  async getById(arenaId: string): Promise<Arena | null> {
+    return this.items.find((arena) => arena.id.toString() === arenaId) || null
   }
 
-  async fetchAll(): Promise<Court[]> {
+  async fetchArenas(): Promise<Arena[]> {
     return this.items
   }
 
-  async fetchAllAvailable(): Promise<Court[]> {
-    return this.items.filter((court) => court.isAvailable)
+  async fetchAllAvailable(): Promise<Arena[]> {
+    return this.items.filter((arena) => arena.isAvailable)
   }
 
-  async create(court: Court): Promise<void> {
-    this.items.push(court)
+  async create(arena: Arena): Promise<void> {
+    this.items.push(arena)
   }
 
-  async save(court: Court): Promise<void> {
-    const courtIndex = this.items.findIndex((item) => item.id.equals(court.id))
+  async save(arena: Arena): Promise<void> {
+    const arenaIndex = this.items.findIndex((item) => item.id.equals(arena.id))
 
-    this.items[courtIndex] = court
+    this.items[arenaIndex] = arena
   }
 
-  async delete(court: Court): Promise<void> {
-    const courtIndex = this.items.findIndex((item) => item.id.equals(court.id))
+  async delete(arena: Arena): Promise<void> {
+    const arenaIndex = this.items.findIndex((item) => item.id.equals(arena.id))
 
-    this.items.splice(courtIndex, 1)
+    this.items.splice(arenaIndex, 1)
   }
 
-  public clean() {
+  public clear() {
     this.items.splice(0, this.items.length)
   }
 }

@@ -1,6 +1,6 @@
 export enum State {
-  Available = 'Disponível',
-  Reserved = 'Reservado',
-  DayUse = 'DayUse',
-  Maintenance = 'Manutenção',
+  AVAILABLE = 'Disponível',
+  RESERVED = 'Reservado',
+  DAYUSE = 'DayUse',
+  MAINTENANCE = 'Manutenção',
 }

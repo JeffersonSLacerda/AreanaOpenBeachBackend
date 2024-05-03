@@ -7,15 +7,12 @@ import { State } from '@/domain/arena/enterprise/entities/enums/state'
 
 export function makeArena(
   override: Partial<ArenaProps> = {},
-export function makeArena(
-  override: Partial<ArenaProps> = {},
   id?: UniqueEntityID,
 ) {
   const modalitiesArray = Object.values(Modalities)
   const randomModality =
     modalitiesArray[Math.floor(Math.random() * modalitiesArray.length)]
 
-  const arena = Arena.create(
   const arena = Arena.create(
     {
       name: faker.person.fullName(),
@@ -27,6 +24,5 @@ export function makeArena(
     id,
   )
 
-  return arena
   return arena
 }

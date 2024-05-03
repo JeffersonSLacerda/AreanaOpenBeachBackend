@@ -10,7 +10,6 @@ interface EditArenaUseCaseRequest {
   name: string
   modality: Modalities
   isAvailable: boolean
-  capacity?: number
   state: State
 }
 
@@ -24,7 +23,6 @@ export class EditArenaUseCase {
     name,
     modality,
     isAvailable,
-    capacity,
     state,
   }: EditArenaUseCaseRequest): Promise<EditArenaUseCaseResponse> {
     const arena = await this.arenasRepository.getById(arenaId)
@@ -34,7 +32,6 @@ export class EditArenaUseCase {
     arena.name = name
     arena.modality = modality
     arena.isAvailable = isAvailable
-    if (capacity) arena.capacity = capacity
     arena.state = state
 
     await this.arenasRepository.save(arena)

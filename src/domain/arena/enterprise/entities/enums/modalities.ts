@@ -1,6 +1,6 @@
 export enum Modalities {
-  BeachTennis = 'Beach Tênis',
-  BeachVolleyball = 'Vôlei de Praia',
-  Footvolley = 'Futevôlei',
-  None = 'Nenhuma',
+  BEACHTENNIS = 'Beach Tênis',
+  BEACHVOLLEYBALL = 'Vôlei de Praia',
+  FOOTVOLLEY = 'Futevôlei',
+  NONE = 'Nenhuma',
 }

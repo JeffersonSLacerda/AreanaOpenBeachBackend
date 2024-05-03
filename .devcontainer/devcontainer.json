@@ -42,7 +42,8 @@
 				"github.vscode-github-actions",
 				"johnpapa.vscode-peacock",
 				"timonwong.shellcheck",
-				"robertz.code-snapshot"
+				"robertz.code-snapshot",
+				"vitest.explorer"
 			],
 			"settings": {
 				"editor.tabSize": 2,

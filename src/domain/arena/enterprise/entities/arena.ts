@@ -2,12 +2,9 @@ import { Entity } from '@/core/entities/entity'
 import { Optional } from '@/core/types/optional'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { State } from './enums/state'
-import { Modalities } from './enums/modalities'
 
 export interface ArenaProps {
-export interface ArenaProps {
   name: string
-  modality: Modalities
   isAvailable: boolean
   state: State
 
@@ -26,7 +23,6 @@ export class Arena extends Entity<ArenaProps> {
     )
 
     return arena
-    return arena
   }
 
   get name(): string {
@@ -35,15 +31,6 @@ export class Arena extends Entity<ArenaProps> {
 
   set name(name: string) {
     this.props.name = name
-    this.touch()
-  }
-
-  get modality(): Modalities {
-    return this.props.modality
-  }
-
-  set modality(modality: Modalities) {
-    this.props.modality = modality
     this.touch()
   }
 

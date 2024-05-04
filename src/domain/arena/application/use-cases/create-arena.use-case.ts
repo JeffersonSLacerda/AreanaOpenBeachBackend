@@ -1,12 +1,10 @@
 import { Either, right } from '@/core/either'
-import { Modalities } from '../../enterprise/entities/enums/modalities'
 import { State } from '../../enterprise/entities/enums/state'
 import { Arena } from '../../enterprise/entities/arena'
 import { ArenasRepository } from '../repositories/arenas-repository'
 
 interface CreateArenaUseCaseRequest {
   name: string
-  modality: Modalities
   isAvailable: boolean
   state: State
 }
@@ -18,13 +16,11 @@ export class CreateArenaUseCase {
 
   async execute({
     name,
-    modality,
     isAvailable,
     state,
   }: CreateArenaUseCaseRequest): Promise<CreateArenaUseCaseResponse> {
     const arena = Arena.create({
       name,
-      modality,
       isAvailable,
       state,
     })

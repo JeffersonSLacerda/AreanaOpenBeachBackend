@@ -1,5 +1,4 @@
 import { Either, left, right } from '@/core/either'
-import { Modalities } from '../../enterprise/entities/enums/modalities'
 import { State } from '../../enterprise/entities/enums/state'
 import { ResourceNotFoundError } from '@/core/errors/types/resource-not-found-error'
 import { Arena } from '../../enterprise/entities/arena'
@@ -8,7 +7,6 @@ import { ArenasRepository } from '../repositories/arenas-repository'
 interface EditArenaUseCaseRequest {
   arenaId: string
   name: string
-  modality: Modalities
   isAvailable: boolean
   state: State
 }
@@ -21,7 +19,6 @@ export class EditArenaUseCase {
   async execute({
     arenaId,
     name,
-    modality,
     isAvailable,
     state,
   }: EditArenaUseCaseRequest): Promise<EditArenaUseCaseResponse> {
@@ -30,7 +27,6 @@ export class EditArenaUseCase {
     if (!arena) return left(new ResourceNotFoundError())
 
     arena.name = name
-    arena.modality = modality
     arena.isAvailable = isAvailable
     arena.state = state
 

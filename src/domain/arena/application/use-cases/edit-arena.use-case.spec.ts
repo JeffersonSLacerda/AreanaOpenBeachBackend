@@ -22,7 +22,6 @@ describe('Edit Arena', () => {
       arenaId: arena.id.toString(),
       name: 'Edited Arena',
       isAvailable: true,
-      modality: arena.modality,
       state: arena.state,
     })
 

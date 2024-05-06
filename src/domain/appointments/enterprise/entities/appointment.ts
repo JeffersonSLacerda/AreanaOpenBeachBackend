@@ -1,10 +1,12 @@
 import { AggregateRoot } from '@/core/entities/aggregate-root'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { Optional } from '@/core/types/optional'
+import { Modalities } from './enums/modalities'
 
 export interface AppointmentProps {
   arenaId: UniqueEntityID
   userId: UniqueEntityID
+  modality: Modalities
   date: Date
 
   createdAt: Date
@@ -42,6 +44,15 @@ export class Appointment extends AggregateRoot<AppointmentProps> {
 
   set userId(id: UniqueEntityID) {
     this.props.userId = id
+    this.touch()
+  }
+
+  get modality(): Modalities {
+    return this.props.modality
+  }
+
+  set modality(modality: Modalities) {
+    this.props.modality = modality
     this.touch()
   }
 

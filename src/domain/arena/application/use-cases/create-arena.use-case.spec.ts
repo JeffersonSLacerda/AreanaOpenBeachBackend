@@ -11,7 +11,7 @@ describe('Create Arena', () => {
   })
 
   afterEach(() => {
-    arenasRepository.clean()
+    arenasRepository.clear()
   })
   it('should be able to create a new Arena', async () => {
     const result = await sut.execute({

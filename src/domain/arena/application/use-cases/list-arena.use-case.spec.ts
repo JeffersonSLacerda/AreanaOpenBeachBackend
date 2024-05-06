@@ -11,7 +11,7 @@ describe('List Arena', () => {
   })
 
   afterEach(() => {
-    arenasRepository.clean()
+    arenasRepository.clear()
   })
   it('should be able to list a arena', async () => {
     const arena1 = makeArena({

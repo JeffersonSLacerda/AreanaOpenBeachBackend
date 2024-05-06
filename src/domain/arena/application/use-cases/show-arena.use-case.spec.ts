@@ -11,7 +11,7 @@ describe('Show Arena', () => {
   })
 
   afterEach(() => {
-    arenasRepository.clean()
+    arenasRepository.clear()
   })
 
   it('should be able to show a arena', async () => {

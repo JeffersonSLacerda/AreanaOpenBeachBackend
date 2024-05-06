@@ -11,7 +11,7 @@ describe('Edit Arena', () => {
   })
 
   afterEach(() => {
-    arenasRepository.clean()
+    arenasRepository.clear()
   })
   it('should be able to edit a arena', async () => {
     const arena = makeArena()

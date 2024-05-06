@@ -32,7 +32,7 @@ export class InMemoryArenasRepository implements ArenasRepository {
     this.items.splice(arenaIndex, 1)
   }
 
-  public clean() {
+  public clear() {
     this.items.splice(0, this.items.length)
   }
 }

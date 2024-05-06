@@ -1,6 +1,6 @@
 import { AppointmentsRepository } from '@/domain/appointments/application/repositories/appointmentsRepository'
 import { Appointment } from '@/domain/appointments/enterprise/entities/appointment'
-import { getDate, getMonth, getYear } from 'date-fns'
+import { getDate, getMonth, getYear, isEqual } from 'date-fns'
 
 export class InMemoryAppointmentsRepository implements AppointmentsRepository {
   public items: Appointment[] = []
@@ -17,6 +17,16 @@ export class InMemoryAppointmentsRepository implements AppointmentsRepository {
     )
 
     return appointments
+  }
+
+  async getByDate(date: Date, arenaId: string): Promise<Appointment | null> {
+    const appointment = this.items.find(
+      (appointment) =>
+        isEqual(appointment.date, date) &&
+        appointment.arenaId.toString() === arenaId,
+    )
+
+    return appointment || null
   }
 
   async fetchByDayFromArena(

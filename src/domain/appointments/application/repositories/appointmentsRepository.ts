@@ -2,6 +2,7 @@ import { Appointment } from '../../enterprise/entities/appointment'
 
 export interface AppointmentsRepository {
   getById(id: string): Promise<Appointment | null>
+  getByDate(date: Date, arenaId: string): Promise<Appointment | null>
   fetchAllFromUser(userId: string): Promise<Appointment[]>
   fetchByDayFromArena(
     day: number,

@@ -9,6 +9,7 @@ import { isBefore, startOfHour } from 'date-fns'
 import { AppointmentOnPastDateError } from '@/core/errors/types/appointment-on-past-date'
 import { AppointmentAlreadyBooked } from '@/core/errors/types/appointment-already-booked'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { AvailableTimes } from '@/core/helpers/available-times'
 
 interface CreateAppointmentUseCaseRequest {
   arenaId: string
@@ -44,6 +45,12 @@ export class CreateAppointmentUseCase {
 
     if (isBefore(appointmentDate, Date.now()))
       return left(new AppointmentOnPastDateError())
+
+    const times = new AvailableTimes()
+    const availableTimes = times.getAvailableTimes(date)
+
+    if (!availableTimes.includes(appointmentDate.getHours()))
+      return left(new AppointmentAlreadyBooked())
 
     const appoitmentsOnSameDate = await this.appointmentsRepository.getByDate(
       date,

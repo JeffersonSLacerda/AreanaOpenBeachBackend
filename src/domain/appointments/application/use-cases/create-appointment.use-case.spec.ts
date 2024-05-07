@@ -54,7 +54,7 @@ describe('Create Appointments', () => {
       arenaId: arena.id.toString(),
       userId: user.id.toString(),
       modality: Modalities.BEACHTENNIS,
-      date: new Date(2024, 4, 6, 13),
+      date: new Date(2024, 4, 6, 15),
     })
 
     expect(appointment.isRight()).toBe(true)
@@ -72,7 +72,7 @@ describe('Create Appointments', () => {
       arenaId: arena.id.toString(),
       userId: user.id.toString(),
       modality: Modalities.BEACHTENNIS,
-      date: new Date(2024, 4, 5, 13),
+      date: new Date(2024, 4, 5, 15),
     })
 
     expect(appointment.isLeft()).toBe(true)
@@ -90,7 +90,7 @@ describe('Create Appointments', () => {
     const appointment = makeAppointment({
       userId: user.id,
       arenaId: arena.id,
-      date: new Date(2024, 5, 6, 13),
+      date: new Date(2024, 5, 6, 15),
     })
 
     appointmentsRepository.create(appointment)
@@ -99,7 +99,7 @@ describe('Create Appointments', () => {
       arenaId: arena.id.toString(),
       userId: user.id.toString(),
       modality: Modalities.BEACHTENNIS,
-      date: new Date(2024, 5, 6, 13),
+      date: new Date(2024, 5, 6, 15),
     })
 
     expect(secondAppointment.isLeft()).toBe(true)
@@ -116,7 +116,7 @@ describe('Create Appointments', () => {
       arenaId: arena.id.toString(),
       userId: 'user id',
       modality: Modalities.BEACHTENNIS,
-      date: new Date(2024, 4, 6, 13),
+      date: new Date(2024, 4, 6, 15),
     })
 
     expect(appointment.isLeft()).toBe(true)
@@ -133,7 +133,7 @@ describe('Create Appointments', () => {
       arenaId: 'arena id',
       userId: user.id.toString(),
       modality: Modalities.BEACHTENNIS,
-      date: new Date(2024, 4, 6, 13),
+      date: new Date(2024, 4, 6, 15),
     })
 
     expect(appointment.isLeft()).toBe(true)
